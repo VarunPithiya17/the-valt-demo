@@ -7,7 +7,7 @@
 <meta name="description" content="The VALT Professional: shampoos, masks, serums, oils and skin care for salon-quality results. Shop online, order on WhatsApp. Rajkot, Gujarat.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -46,6 +46,8 @@
   <div class="r" id="cols"><div class="seal"><svg viewBox="0 0 100 100"><defs><path id="cc" d="M50 50m-40 0a40 40 0 1 1 80 0a40 40 0 1 1-80 0"/></defs><text font-size="8.6" letter-spacing="2.6" fill="#f4efe8" font-family="Manrope"><textPath href="#cc">SALON QUALITY · EVERY DAY · </textPath></text></svg><b>V</b></div></div>
 </section>
 
+<div class="stories" id="stories"></div>
+<div class="sv" id="sv"><div class="box"><div class="bars" id="svb"></div><div class="hd2"><img id="svA" alt=""><span id="svN"></span><button id="svX" aria-label="Close">✕</button></div><img id="svI" alt=""><div class="tap l" id="svL"></div><div class="tap r" id="svR"></div><div class="cta"><h3 id="svT"></h3><a class="btn btn-l" id="svC" href="#">Shop this →</a></div></div></div>
 <div class="mq"><div class="t" id="mqt"><span>Argan</span><span>Rosemary</span><span>Hydra Botox</span><span>Keratin</span><span>Bio Protein</span><span>Pro Biotin</span><span>Tea Tree</span></div></div>
 
 <section class="cats w">
@@ -58,6 +60,7 @@
   </div>
 </section>
 
+<section class="sig" id="signature"><div class="pin"><div class="w top"><div><div class="k" style="color:#c9a98a">The signatures</div><h2 style="margin-top:14px">Five bottles, <em>one obsession.</em></h2></div><div class="cnt2" id="sigc">01 / 05</div></div><div class="trk" id="sigt"></div></div></section>
 <section class="bs w">
   <div class="sh"><h2 class="rv">Best<em>sellers</em></h2><div class="navb"><button id="rp" aria-label="Previous">←</button><button id="rn" aria-label="Next">→</button></div></div>
   <div class="rail" id="rail"></div>
@@ -134,7 +137,7 @@
 <div class="toast" id="tst"></div>
 <a class="wa" href="#" data-wa="Hi The VALT, I have a question" aria-label="Chat on WhatsApp"><svg width="27" height="27" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
 
-<script src="products.js"></script>
+<script src="products.js?v=4"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -222,6 +225,24 @@ $('#mqt').innerHTML+=$('#mqt').innerHTML;
 $$('[data-wa]').forEach(a=>{a.href=wa(a.dataset.wa);a.target='_blank';a.rel='noopener'});
 addEventListener('scroll',()=>$('#hdr').classList.toggle('sc',scrollY>10),{passive:true});
 const ph=$('#phil');ph.innerHTML=ph.textContent.split(' ').map(t=>`<span class="wd">${t}</span>`).join(' ');
+
+// stories
+const ST=[['Serum',[9,2,8,0],'UltraSmooth Hair Serum'],['Rosemary',[4,15,10],'Rosemary Shampoo'],['Hydra',[3,14,32],'Hydra Botox Shampoo'],['Argan',[13,1,7,30],'Argan Shampoo'],['Pro',[19,20,18],'Bond Repair Treatment'],['Skin',[33,34],'Skin Brightening Face Wash'],['Faces',[16,24,26,29],'Regrowth Hair Oil']];
+$('#stories').innerHTML=ST.map((s,k)=>`<button class="sto" data-st="${k}"><i><img src="${I(s[1][0])}" alt=""></i>${s[0]}</button>`).join('');
+let sk=0,sf=0,stl;const sv=$('#sv');
+function stClose(){stl&&stl.kill();sv.classList.remove('on');lenis&&lenis.start()}
+function stShow(){if(sf<0){if(sk>0){sk--;sf=ST[sk][1].length-1}else sf=0}
+ if(sf>=ST[sk][1].length){sk++;sf=0;if(sk>=ST.length)return stClose()}
+ const s=ST[sk];
+ $('#svb').innerHTML=s[1].map((_,j)=>`<span><b style="width:${j<sf?100:0}%"></b></span>`).join('');$('#svI').src=I(s[1][sf]);$('#svA').src=I(s[1][0]);$('#svN').textContent='the_valt_official · '+s[0];
+ const p=P.find(x=>x.n===s[2]);$('#svT').textContent=p.n;$('#svC').href='product.html?p='+p.s;
+ stl&&stl.kill();const b=$$('#svb b')[sf];
+ if(G){G.fromTo('#svI',{scale:1.12,opacity:.4},{scale:1,opacity:1,duration:.8,ease:'power2.out'});stl=G.to(b,{width:'100%',duration:4.5,ease:'none',onComplete:()=>{sf++;stShow()}})}}
+$('#stories').onclick=e=>{const b=e.target.closest('[data-st]');if(!b)return;sk=+b.dataset.st;sf=0;sv.classList.add('on');lenis&&lenis.stop();stShow()};
+$('#svR').onclick=()=>{sf++;stShow()};$('#svL').onclick=()=>{sf--;stShow()};$('#svX').onclick=stClose;
+// signature track
+const SG=[0,3,5,1,8];
+$('#sigt').innerHTML=SG.map((x,k)=>{const p=P[x];return`<a class="it" href="product.html?p=${p.s}"><span class="n">0${k+1}</span><div class="ph"><img src="${I(p.i)}" alt="${p.n}" loading="lazy"></div><h3>${p.n}</h3><span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7">Discover →</span></a>`}).join('')+'<a class="it end" href="#shop"><div><h3 style="font-size:40px">Shop all<br><em>18 formulas</em></h3><span class="btn btn-l" style="margin-top:20px">Explore →</span></div></a>';
 cartUI();wishUI();
 $$('a[href^="#"]').forEach(a=>{const h=a.getAttribute('href');if(h.length>1&&!a.dataset.f)a.addEventListener('click',e=>{e.preventDefault();smooth($(h).offsetTop-80)})});
 
@@ -245,6 +266,15 @@ else{gsap.registerPlugin(ScrollTrigger);
  gsap.to('#phil .wd',{opacity:1,stagger:.05,ease:'none',scrollTrigger:{trigger:'#phil',start:'top 80%',end:'bottom 50%',scrub:true}});
  gsap.from('.story .ph2',{yPercent:40,ease:'none',scrollTrigger:{trigger:'.story',scrub:true}});
  gsap.from('.fbig',{yPercent:50,opacity:0,ease:'none',scrollTrigger:{trigger:'footer',start:'top 80%',end:'top 20%',scrub:true}});
+ // pinned horizontal signatures
+ const trk=$('#sigt'),dist=()=>trk.scrollWidth-innerWidth+40;
+ const hz=gsap.to(trk,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#signature',pin:'#signature .pin',start:'top top',end:()=>'+='+dist(),scrub:.8,invalidateOnRefresh:true,onUpdate:s=>$('#sigc').textContent='0'+Math.min(5,1+Math.floor(s.progress*5))+' / 05'}});
+ $$('#sigt img').forEach(img=>gsap.to(img,{scale:1,ease:'none',scrollTrigger:{trigger:img,containerAnimation:hz,start:'left right',end:'right left',scrub:true}}));
+ // headings: word-by-word masked rise
+ $$('h2').forEach(h=>{if(h.closest('#signature'))return;h.querySelectorAll('br').forEach(b=>b.replaceWith(' '));
+  const walk=n=>[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t.trim())return f.append(t);const w=document.createElement('span');w.className='wl';w.innerHTML='<span>'+t+'</span>';f.append(w)});c.replaceWith(f)}else if(c.tagName==='EM')walk(c)});
+  walk(h);h.classList.remove('rv');gsap.set(h,{opacity:1,y:0});gsap.from(h.querySelectorAll('.wl>span'),{yPercent:110,duration:1.1,stagger:.06,ease:'power4.out',scrollTrigger:{trigger:h,start:'top 88%'}})});
+ gsap.from('.sto',{scale:.4,opacity:0,stagger:.06,duration:.9,ease:'back.out(1.7)',delay:1.6});
  gsap.to('#prog',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});
  $$('.ct a').forEach((a,k)=>gsap.to(a,{clipPath:'inset(0% 0 0 0)',duration:1.4,delay:k*.08,ease:'expo.inOut',scrollTrigger:{trigger:'.ct',start:'top 85%'}}));
  gsap.to('.story .ph',{clipPath:'inset(0% 0 0 0)',duration:1.6,ease:'expo.inOut',scrollTrigger:{trigger:'.story',start:'top 70%'}});
