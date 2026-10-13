@@ -228,9 +228,9 @@ $$('a[href^="#"]').forEach(a=>{const h=a.getAttribute('href');if(h.length>1&&!a.
 const rs=$$('.rot span');
 if(!G){document.documentElement.classList.remove('js');$('#ld').remove();rs[0].style.opacity=1}
 else{gsap.registerPlugin(ScrollTrigger);
- if(window.Lenis){lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+ if(window.Lenis&&matchMedia('(hover:hover) and (pointer:fine)').matches){lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
  $('#ld .logo u').style.width='60px';
- gsap.timeline({delay:.9}).to('#ld',{clipPath:'inset(0 0 100% 0)',duration:1.1,ease:'power4.inOut'}).set('#ld',{display:'none'})
+ gsap.timeline({delay:.5}).to('#ld',{clipPath:'inset(0 0 100% 0)',duration:1.1,ease:'power4.inOut'}).set('#ld',{display:'none'})
   .from('.hero h1 .ln>span',{yPercent:115,duration:1.2,stagger:.1,ease:'power4.out'},'-=.5')
   .from('.hx',{opacity:0,y:24,stagger:.1,duration:.9,ease:'power3.out'},'-=.8')
   .from('.col',{yPercent:30,opacity:0,stagger:.12,duration:1.4,ease:'expo.out'},'-=1.2')
@@ -252,7 +252,7 @@ else{gsap.registerPlugin(ScrollTrigger);
  // magnetic buttons
  if(matchMedia('(hover:hover)').matches)$$('.btn,.ib').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,duration:.4})});b.addEventListener('pointerleave',()=>gsap.to(b,{x:0,y:0,duration:.7,ease:'elastic.out(1,.4)'}))});
  // product cards tilt toward cursor
- document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.pc .im');if(!c)return;const r=c.getBoundingClientRect();gsap.to(c,{rotateY:((e.clientX-r.left)/r.width-.5)*8,rotateX:-((e.clientY-r.top)/r.height-.5)*8,transformPerspective:900,duration:.5})});
+ if(matchMedia('(hover:hover)').matches)document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.pc .im');if(!c)return;const r=c.getBoundingClientRect();gsap.to(c,{rotateY:((e.clientX-r.left)/r.width-.5)*8,rotateX:-((e.clientY-r.top)/r.height-.5)*8,transformPerspective:900,duration:.5})});
  document.addEventListener('pointerout',e=>{const c=e.target.closest&&e.target.closest('.pc .im');if(c&&!c.contains(e.relatedTarget))gsap.to(c,{rotateY:0,rotateX:0,duration:.8})});
  addEventListener('load',()=>ScrollTrigger.refresh());
 }
