@@ -7,7 +7,7 @@
 <meta name="description" content="The VALT Professional salon-quality hair and skin care.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 <style>
 .crumb{font-size:12px;color:var(--mut);display:flex;gap:8px;padding:22px 0}
 .crumb a:hover{color:var(--esp)}
@@ -113,12 +113,16 @@
 
 <section class="more w"><div class="sh"><h2>You may also <em>love</em></h2><a href="index.html#shop" class="btn btn-o">Shop all →</a></div><div class="rail" id="rel"></div></section>
 
+<section class="recent w" id="recentS" style="display:none"><div class="sh"><h2>Recently <em>viewed</em></h2></div><div class="rail" id="recent"></div></section>
 <footer><div class="fbig">VALT</div><div class="w fb"><span>© 2026 The VALT Professional · Kunj Beauty City, Rajkot</span><a href="https://www.instagram.com/the_valt_official/" target="_blank" rel="noopener">Instagram ↗</a><span>Website by KORTIQ</span></div></footer>
 
 <div class="sticky" id="stk"><img id="sI" alt=""><b id="sN"></b><button class="btn" id="sA">Add to bag</button></div>
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drw" aria-label="Bag"><div class="dh"><h3 id="dT">Your bag</h3><button class="ib" id="xC" aria-label="Close">✕</button></div><div class="items" id="items"></div><div class="df"><p>Prices &amp; delivery are confirmed on WhatsApp.</p><a class="btn btn-d" id="chk" target="_blank" rel="noopener">Checkout on WhatsApp →</a></div></aside>
 <div class="toast" id="tst"></div>
+<nav class="bnav" aria-label="Quick menu"><a href="index.html#top"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/></svg>Home</a><a href="index.html#shop"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>Shop</a><button data-bs><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Search</button><button data-bc><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Bag<span class="n" id="bN" style="display:none">0</span></button><a class="wab" data-wa="Hi The VALT, I have a question" href="#"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 19z"/></svg>Chat</a></nav>
+<div class="curtain" id="curt"><div class="logo"><i>The</i><b>VALT</b><u></u></div></div><div class="cur" id="cur"></div>
+
 <a class="wa" id="waf" aria-label="Chat on WhatsApp" target="_blank" rel="noopener"><svg width="27" height="27" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
 
 <script src="products.js?v=4"></script>
@@ -182,6 +186,10 @@ const word=p.n.split(' ')[0].toLowerCase();
 const pick=c=>P.find(x=>x!==p&&x.c===c&&x.n.toLowerCase().includes(word))||P.find(x=>x!==p&&x.c===c);
 const R=[p,...new Set(PAIR[p.c].map(pick))].filter(Boolean).slice(0,3);
 $('#rt').innerHTML=R.map((x,k)=>card(x)).join('')+`<div class="sum"><div class="k" style="color:var(--wine)">Your ritual</div><h3>${R.length}-step set</h3><p style="color:#5b5047;margin-bottom:20px">${R.map(x=>x.n).join(' + ')}</p><button class="btn btn-d" id="addAll" style="width:100%">Add all to bag</button></div>`;
+
+// recently viewed (this device only)
+let rv=(store('valt-recent')||[]).filter(x=>x!==p.x);if(rv.length){$('#recentS').style.display='';$('#recent').innerHTML=rv.slice(0,6).map(x=>card(P[x])).join('')}
+store('valt-recent',[p.x,...rv].slice(0,8));
 $('#addAll').onclick=()=>R.forEach(x=>add(x.x));
 $('#rel').innerHTML=P.filter(x=>x!==p&&(x.g===p.g)).slice(0,8).map(card).join('');
 
@@ -209,6 +217,27 @@ else{gsap.registerPlugin(ScrollTrigger);
  gsap.from('.fbig',{yPercent:50,opacity:0,ease:'none',scrollTrigger:{trigger:'footer',start:'top 90%',end:'top 30%',scrub:true}});
  ScrollTrigger.create({trigger:'#buy',start:'bottom top',onEnter:()=>$('#stk').classList.add('on'),onLeaveBack:()=>$('#stk').classList.remove('on')});
 }
+</script>
+
+<script>
+(()=>{const c=document.getElementById('curt'),cur=document.getElementById('cur');
+ // page transition: curtain covers on leave, lifts on arrive
+ if(sessionStorage.getItem('valt-t')){sessionStorage.removeItem('valt-t');c.classList.add('out');const ld=document.getElementById('ld');ld&&ld.remove()}
+ document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.target||e.metaKey||e.ctrlKey)return;const h=a.getAttribute('href');
+  if(!/^(index|product)\.html/.test(h))return;const u=new URL(h,location.href);if(u.pathname===location.pathname&&u.search===location.search)return;
+  e.preventDefault();e.stopImmediatePropagation();try{sessionStorage.setItem('valt-t',1)}catch(_){}c.classList.remove('out');c.classList.add('in');setTimeout(()=>location.href=h,520)},true);
+ addEventListener('pageshow',e=>{if(e.persisted){c.classList.remove('in','out')}});
+ document.querySelectorAll('[data-wa]').forEach(a=>{if(a.getAttribute('href')==='#'){a.href='https://wa.me/917698988098?text='+encodeURIComponent(a.dataset.wa);a.target='_blank';a.rel='noopener'}});
+ // bottom nav hooks
+ document.querySelectorAll('[data-bs]').forEach(b=>b.onclick=()=>{const s=document.getElementById('oS');s?s.click():location.href='index.html#shop'});
+ document.querySelectorAll('[data-bc]').forEach(b=>b.onclick=()=>document.getElementById('oC').click());
+ const sync=()=>{const n=document.getElementById('cN'),b=document.getElementById('bN');if(n&&b){b.textContent=n.textContent;b.style.display=+n.textContent?'grid':'none'}};
+ sync();new MutationObserver(sync).observe(document.getElementById('cN'),{childList:true});
+ // cursor
+ if(matchMedia('(hover:hover)').matches){let x=0,y=0,cx=0,cy=0;addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY});
+  (function f(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;cur.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(f)})();
+  document.addEventListener('pointerover',e=>{const t=e.target.closest('.pc .im,.ct a,.sig .it,.lane figure,.sto');cur.classList.toggle('big',!!t);cur.textContent=t?(t.closest('.sto')?'Play':t.closest('.lane')?'Look':'View'):''})}
+})();
 </script>
 </body>
 </html>

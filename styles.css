@@ -318,3 +318,41 @@ dialog[open]{animation:up .6s var(--e)}
  .toast.on{transform:translate(-50%,0)}
  .toast span{overflow:hidden;text-overflow:ellipsis;min-width:0}
 }
+
+/* ===== v6: transitions, bottom nav, cursor, ingredients ===== */
+.curtain{position:fixed;inset:0;z-index:120;background:var(--esp);transform:translateY(100%);pointer-events:none;display:grid;place-items:center;color:var(--bone)}
+.curtain .logo b{font-size:64px}.curtain .logo i{font-size:30px}
+.curtain.in{animation:cIn .6s var(--e) forwards}
+.curtain.out{transform:none;animation:cOut .8s var(--e) .1s forwards}
+@keyframes cIn{from{transform:translateY(100%)}to{transform:none}}
+@keyframes cOut{to{transform:translateY(-100%)}}
+.bnav{display:none}
+@media(max-width:900px){
+ .bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:10px;right:10px;bottom:10px;z-index:58;height:62px;border-radius:20px;background:rgba(36,28,23,.92);backdrop-filter:blur(14px);color:var(--bone);box-shadow:0 16px 40px -14px rgba(0,0,0,.6)}
+ .bnav a,.bnav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:500;letter-spacing:.04em;position:relative}
+ .bnav svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5}
+ .bnav .n{position:absolute;top:8px;left:calc(50% + 6px);min-width:16px;height:16px;border-radius:8px;background:var(--wine);font-size:9.5px;display:grid;place-items:center}
+ .bnav .wab{color:#4fe08a}
+ .wa{display:none}
+ body{padding-bottom:84px}
+ .sticky{bottom:84px}
+}
+.cur{position:fixed;left:0;top:0;width:12px;height:12px;border-radius:50%;background:var(--wine);pointer-events:none;z-index:110;transform:translate(-50%,-50%);transition:width .4s var(--e),height .4s var(--e),background .3s;display:grid;place-items:center;color:var(--bone);font:600 10px var(--sans);letter-spacing:.14em;text-transform:uppercase;mix-blend-mode:normal}
+.cur.big{width:86px;height:86px;background:rgba(122,31,43,.92)}
+@media(hover:none){.cur{display:none}}
+.ingx{padding:clamp(100px,12vw,160px) 0}
+.ingx .g{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
+.ingx .vis{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:var(--stone)}
+.ingx .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ingx .vis .lbl{position:absolute;left:18px;bottom:18px;z-index:2;background:var(--bone);border-radius:100px;padding:8px 16px;font:italic 400 22px var(--serif)}
+.ingx ul{list-style:none;margin-top:34px;border-top:1px solid var(--line)}
+.ingx li{border-bottom:1px solid var(--line);padding:20px 0;cursor:pointer;display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:baseline;transition:padding .5s var(--e)}
+.ingx li h3{font-size:clamp(34px,4vw,58px);transition:color .4s,transform .6s var(--e)}
+.ingx li p{grid-column:2/-1;color:#5b5047;max-height:0;overflow:hidden;opacity:0;transition:max-height .6s var(--e),opacity .5s}
+.ingx li .i{font:italic 20px var(--serif);color:var(--mut)}
+.ingx li .ar{font-size:20px;transition:transform .5s var(--e)}
+.ingx li.on h3{color:var(--wine);font-style:italic;transform:translateX(10px)}
+.ingx li.on p{max-height:120px;opacity:1;margin-top:8px}
+.ingx li.on .ar{transform:rotate(-45deg)}
+@media(max-width:900px){.ingx .g{grid-template-columns:1fr}.ingx .vis{aspect-ratio:1}}
+.recent{padding:0 0 110px}
