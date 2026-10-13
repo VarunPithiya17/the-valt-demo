@@ -7,7 +7,7 @@
 <meta name="description" content="The VALT Professional salon-quality hair and skin care.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 <style>
 .crumb{font-size:12px;color:var(--mut);display:flex;gap:8px;padding:22px 0}
 .crumb a:hover{color:var(--esp)}
@@ -164,7 +164,7 @@ function cartUI(){store('valt-cart',cart);const n=cart.reduce((s,c)=>s+c.q,0);$(
  $('#items').innerHTML=cart.length?cart.map((c,k)=>{const x=P[c.x];return`<div class="li"><img src="${I(x.i)}" alt=""><div><h4>${x.n}</h4><small style="color:var(--mut)">${c.z}</small><br><span class="qty"><button data-d="${k}">−</button><span>${c.q}</span><button data-u="${k}">+</button></span></div><button class="rm" data-r="${k}">Remove</button></div>`}).join(''):'<div class="em">Your bag is empty.</div>';
  const c=$('#chk');c.href=wa('Hi The VALT, I would like to order:\n'+cart.map(c=>`• ${P[c.x].n} (${c.z}) × ${c.q}`).join('\n'));c.style.opacity=cart.length?1:.4;c.style.pointerEvents=cart.length?'':'none'}
 let tt;function toast(h){const t=$('#tst');t.innerHTML=h;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2400)}
-function add(x,z,n=1){const it=P[x];z=z||it.z[0];const f=cart.find(c=>c.x===x&&c.z===z);f?f.q+=n:cart.push({x,z,q:n});cartUI();toast(`<img src="${I(it.i)}" alt="">${it.n} added to bag`);G&&G.fromTo('#oC',{scale:1.35},{scale:1,duration:.7,ease:'elastic.out(1,.4)'})}
+function add(x,z,n=1){const it=P[x];z=z||it.z[0];const f=cart.find(c=>c.x===x&&c.z===z);f?f.q+=n:cart.push({x,z,q:n});cartUI();toast(`<img src="${I(it.i)}" alt=""><span>${it.n} added to bag</span>`);G&&G.fromTo('#oC',{scale:1.35},{scale:1,duration:.7,ease:'elastic.out(1,.4)'})}
 $('#items').onclick=e=>{const t=e.target.dataset;if(t.u)cart[t.u].q++;if(t.d){cart[t.d].q--;if(!cart[t.d].q)cart.splice(t.d,1)}if(t.r)cart.splice(t.r,1);cartUI()};
 const drw=$('#drw'),scrim=$('#scrim');let lenis;
 const openC=()=>{drw.classList.add('on');scrim.classList.add('on');lenis&&lenis.stop()},closeC=()=>{drw.classList.remove('on');scrim.classList.remove('on');lenis&&lenis.start()};

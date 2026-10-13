@@ -313,3 +313,8 @@ dialog[open]{animation:up .6s var(--e)}
 .sig .it.end{display:grid;place-items:center;text-align:center;border:1px solid rgba(244,239,232,.25);border-radius:22px;aspect-ratio:4/5;align-self:start}
 @media(max-width:900px){.sig .it{width:72vw}.sig .pin{gap:24px}.sig .it .n{font-size:48px}}
 .wl{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}.wl>span{display:inline-block}
+@media(max-width:900px){
+ .toast{top:74px;bottom:auto;transform:translate(-50%,-220%);width:max-content;max-width:calc(100% - 32px);white-space:nowrap;padding:8px 18px 8px 8px;font-size:12.5px;box-shadow:0 14px 30px -12px rgba(0,0,0,.5)}
+ .toast.on{transform:translate(-50%,0)}
+ .toast span{overflow:hidden;text-overflow:ellipsis;min-width:0}
+}
