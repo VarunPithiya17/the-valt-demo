@@ -356,3 +356,7 @@ dialog[open]{animation:up .6s var(--e)}
 .ingx li.on .ar{transform:rotate(-45deg)}
 @media(max-width:900px){.ingx .g{grid-template-columns:1fr}.ingx .vis{aspect-ratio:1}}
 .recent{padding:0 0 110px}
+/* toast: fully invisible when hidden (iOS peeking fix) */
+.toast{opacity:0;visibility:hidden;transition:transform .6s var(--e),opacity .35s,visibility 0s .6s}
+.toast.on{opacity:1;visibility:visible;transition:transform .6s var(--e),opacity .25s,visibility 0s}
+@media(max-width:900px){.toast{top:calc(env(safe-area-inset-top) + 74px);transform:translate(-50%,-30px)}.toast.on{transform:translate(-50%,0)}}
