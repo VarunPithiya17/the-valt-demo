@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The VALT Professional</title>
+<meta name="description" content="The VALT Professional salon-quality hair and skin care.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+.crumb{font-size:12px;color:var(--mut);display:flex;gap:8px;padding:22px 0}
+.crumb a:hover{color:var(--esp)}
+.pdp{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(30px,5vw,80px);padding-bottom:110px}
+.gal{display:grid;grid-template-columns:84px 1fr;gap:14px;position:sticky;top:96px;align-self:start}
+.thumbs{display:flex;flex-direction:column;gap:10px}
+.thumbs button{border-radius:10px;overflow:hidden;aspect-ratio:4/5;opacity:.5;transition:.4s var(--e);outline:1px solid transparent;outline-offset:3px}
+.thumbs button.on{opacity:1;outline-color:var(--esp)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.stage{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:var(--stone);cursor:zoom-in}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stage .lens{position:absolute;inset:0;background-size:220%;opacity:0;transition:opacity .35s;pointer-events:none}
+.stage:hover .lens{opacity:1}
+.stage .cnt{position:absolute;left:16px;bottom:16px;background:var(--bone);border-radius:100px;padding:6px 12px;font-size:11px;font-weight:600;letter-spacing:.14em}
+.info{padding-top:10px}
+.info .tag{display:inline-block;background:var(--wine);color:var(--bone);border-radius:100px;padding:6px 12px;font:600 10px var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.info h1{font-size:clamp(54px,6.4vw,104px);margin:22px 0 18px}
+.info h1 .ch{display:inline-block}
+.info .lede{font-size:17px;color:#5b5047;max-width:520px}
+.hl{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0}
+.hl span{border:1px solid var(--line);border-radius:100px;padding:9px 15px;font-size:12px}
+.opt{margin:30px 0 22px}
+.opt .k{color:var(--mut);margin-bottom:12px;display:block}
+.sizes{display:flex;gap:8px}.sizes button{height:46px;padding:0 22px;border:1px solid var(--line);border-radius:100px;font-size:13px;transition:.3s}
+.sizes button.on{background:var(--esp);color:var(--bone);border-color:var(--esp)}
+.buy{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.qty2{display:flex;align-items:center;border:1px solid var(--esp);border-radius:100px;height:52px}.qty2 button{width:46px;height:100%;font-size:18px}.qty2 span{min-width:24px;text-align:center}
+.buy .btn{width:100%}
+.buy .btn-o{grid-column:1/-1}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0 34px}
+.perks div{background:var(--stone);border-radius:14px;padding:14px;font-size:12px;line-height:1.45}
+.perks b{display:block;font:italic 400 20px var(--serif);margin-bottom:2px}
+.acc details{padding:20px 0}.acc summary{font-size:24px}
+.acc ul{margin:12px 0 0 18px;color:#5b5047}
+@media(max-width:960px){.pdp{grid-template-columns:1fr}.gal{position:relative;top:0;grid-template-columns:1fr}.thumbs{flex-direction:row;order:2}.thumbs button{width:64px}}
+.bigname{overflow:hidden;white-space:nowrap;border-block:1px solid var(--line);padding:26px 0}
+.bigname .t{display:inline-flex;font:italic 400 clamp(70px,10vw,170px)/1 var(--serif);will-change:transform}
+.bigname span{padding-right:.6em}.bigname span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--esp)}
+.reveal{height:220vh;position:relative}
+.reveal .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.reveal .frame{position:absolute;inset:0;clip-path:inset(22% 30% round 24px)}
+.reveal .frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.25)}
+.reveal .frame::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 50%,rgba(36,28,23,.78),rgba(36,28,23,.5))}
+.reveal .cap{position:relative;z-index:2;color:var(--bone);text-align:center;opacity:0;padding:0 20px}
+.reveal .cap h2{font-size:clamp(50px,7vw,120px)}
+.how{padding:clamp(100px,12vw,160px) 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px}
+.stp{border-top:1px solid var(--esp);padding-top:24px}
+.stp .n{font:italic 400 90px/1 var(--serif);color:var(--wine)}
+.stp h3{font-size:36px;margin:14px 0 10px}.stp p{color:#5b5047}
+@media(max-width:800px){.steps{grid-template-columns:1fr}}
+.routine{background:var(--esp);color:var(--bone);padding:clamp(100px,12vw,160px) 0}
+.rt{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:16px;align-items:center;margin-top:50px}
+.rt .pc h4,.rt .pc small{color:var(--bone)}.rt .pc small{opacity:.6}
+.rt .plus{font:300 40px var(--serif);text-align:center}
+.rt .sum{background:var(--bone);color:var(--esp);border-radius:22px;padding:30px;min-width:260px}
+.rt .sum h3{font-size:40px;margin-bottom:14px}
+@media(max-width:900px){.rt{grid-template-columns:1fr 1fr}.rt .sum{grid-column:1/-1}}
+.more{padding:clamp(100px,12vw,150px) 0}
+.sticky{position:fixed;left:50%;bottom:18px;z-index:55;transform:translate(-50%,160%);width:min(760px,calc(100% - 100px));background:rgba(36,28,23,.92);backdrop-filter:blur(12px);color:var(--bone);border-radius:100px;padding:8px 8px 8px 10px;display:flex;align-items:center;gap:14px;transition:transform .7s var(--e)}
+.sticky.on{transform:translate(-50%,0)}
+.sticky img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.sticky b{font:400 20px var(--serif);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky .btn{height:46px;background:var(--bone);color:var(--esp)}.sticky .btn:hover{background:var(--wine);color:var(--bone)}
+@media(max-width:600px){.sticky{width:calc(100% - 90px);left:12px;transform:translateY(160%)}.sticky.on{transform:none}.sticky b{font-size:16px}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<div class="prog" id="prog"></div>
+<header id="hdr" class="sc"><div class="w hd">
+  <nav><a href="index.html#shop" class="ul">Shop All</a><a href="index.html#shop" class="ul">Hair Care</a><a href="index.html#quiz" class="ul">Hair Quiz</a><a href="index.html#salon" class="ul">For Salons</a></nav>
+  <a href="index.html" class="ib burger" aria-label="Back to home"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></a>
+  <a href="index.html" class="logo" aria-label="The VALT home"><i>The</i><b>VALT</b><u></u></a>
+  <div class="icons"><a class="ib" href="index.html#shop" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></a>
+  <button class="ib" id="oC" aria-label="Bag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="n" id="cN">0</span></button></div>
+</div></header>
+
+<main class="w">
+  <div class="crumb"><a href="index.html">Home</a>/<a href="index.html#shop" id="bc1"></a>/<span id="bc2"></span></div>
+  <section class="pdp">
+    <div class="gal"><div class="thumbs" id="thumbs"></div><div class="stage" id="stage"><img id="main" alt=""><div class="lens" id="lens"></div><span class="cnt" id="gc"></span></div></div>
+    <div class="info">
+      <span class="tag" id="tag"></span>
+      <h1 id="nm"></h1>
+      <p class="lede" id="ld2"></p>
+      <div class="hl" id="hl"></div>
+      <div class="opt"><span class="k">Size</span><div class="sizes" id="sz"></div></div>
+      <div class="buy" id="buy"><div class="qty2"><button id="qm" aria-label="Less">−</button><span id="qv">1</span><button id="qp" aria-label="More">+</button></div><button class="btn btn-d" id="add">Add to bag</button><a class="btn btn-o" id="now" target="_blank" rel="noopener">Buy now on WhatsApp</a></div>
+      <div class="perks"><div><b>Salon-grade</b>Professional formula</div><div><b>Rajkot stock</b>Fast dispatch</div><div><b>Expert help</b>Chat before you buy</div></div>
+      <div class="acc"><details open><summary>Benefits</summary><ul id="ben"></ul></details><details><summary>How to use</summary><p id="use" style="margin-top:12px;color:#5b5047"></p></details><details><summary>Ingredients</summary><p id="ing" style="margin-top:12px;color:#5b5047"></p></details><details><summary>Delivery &amp; payment</summary><p style="margin-top:12px;color:#5b5047">Order on WhatsApp and we confirm price, delivery time and payment (UPI / COD) in the chat. Pickup available at Kunj Beauty City, Rajkot.</p></details></div>
+    </div>
+  </section>
+</main>
+
+<div class="bigname"><div class="t" id="big"></div></div>
+
+<section class="reveal" id="rv"><div class="pin"><div class="frame"><img id="rvImg" alt=""></div><div class="cap"><div class="k" style="opacity:.8">The VALT ritual</div><h2 id="rvT" style="margin-top:18px"></h2></div></div></section>
+
+<section class="how w"><div class="k" style="color:var(--wine)">How to use</div><h2 style="margin-top:16px">Three steps to <em>salon hair.</em></h2><div class="steps" id="steps"></div></section>
+
+<section class="routine"><div class="w"><div class="k" style="opacity:.7">Complete the routine</div><h2 style="margin-top:16px">Better <em>together.</em></h2><div class="rt" id="rt"></div></div></section>
+
+<section class="more w"><div class="sh"><h2>You may also <em>love</em></h2><a href="index.html#shop" class="btn btn-o">Shop all →</a></div><div class="rail" id="rel"></div></section>
+
+<footer><div class="fbig">VALT</div><div class="w fb"><span>© 2026 The VALT Professional · Kunj Beauty City, Rajkot</span><a href="https://www.instagram.com/the_valt_official/" target="_blank" rel="noopener">Instagram ↗</a><span>Website by KORTIQ</span></div></footer>
+
+<div class="sticky" id="stk"><img id="sI" alt=""><b id="sN"></b><button class="btn" id="sA">Add to bag</button></div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drw" aria-label="Bag"><div class="dh"><h3 id="dT">Your bag</h3><button class="ib" id="xC" aria-label="Close">✕</button></div><div class="items" id="items"></div><div class="df"><p>Prices &amp; delivery are confirmed on WhatsApp.</p><a class="btn btn-d" id="chk" target="_blank" rel="noopener">Checkout on WhatsApp →</a></div></aside>
+<div class="toast" id="tst"></div>
+<a class="wa" id="waf" aria-label="Chat on WhatsApp" target="_blank" rel="noopener"><svg width="27" height="27" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+
+<script src="products.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],G=window.gsap;
+const WA='917698988098',wa=t=>'https://wa.me/'+WA+'?text='+encodeURIComponent(t),I=n=>'img/v'+String(n).padStart(2,'0')+'.webp';
+const p=P.find(x=>x.s===new URLSearchParams(location.search).get('p'))||P[0];
+document.title=p.n+' — The VALT Professional';
+// per-category copy (how-to + ingredient notes)
+const HOW={'Shampoo':['Wet','Soak hair fully with warm water.'],'Masks':['Cleanse','Wash with a VALT shampoo, squeeze out water.'],'Treatments':['Prep','Cleanse and towel-dry hair.'],'Serums & Oils':['Dispense','Take 2–3 drops (or a coin of oil) in your palm.'],'Bundles':['Cleanse','Massage shampoo into the scalp, rinse.'],'Skin':['Wet','Splash face with lukewarm water.']};
+const HOW2={'Shampoo':[['Lather','Massage a coin-sized amount into the scalp for 60 seconds.'],['Rinse','Rinse well and follow with a VALT mask or conditioner.']],'Masks':[['Apply','Smooth through mid-lengths to ends, avoid roots.'],['Wait & rinse','Leave 5 minutes, rinse with cool water.']],'Treatments':[['Treat','Apply section by section and comb through.'],['Rinse','Leave as directed, rinse thoroughly. Salon pros: back-bar size available.']],'Serums & Oils':[['Apply','Work through lengths and ends; for oils, massage into the scalp.'],['Style','Style as usual. Oils: leave 1 hour or overnight, then wash.']],'Bundles':[['Condition','Apply conditioner to lengths for 2 minutes.'],['Rinse','Rinse with cool water for extra shine.']],'Skin':[['Lather','Massage a small amount over face in circles.'],['Rinse','Rinse and pat dry. Use morning and night.']]};
+const ING={argan:'Argan oil, nourishing conditioning agents.',rosemary:'Rosemary extract, botanical scalp-care actives.',hydra:'Hydrating humectants, conditioning complex.',keratin:'Keratin proteins, smoothing agents.',biotin:'Biotin, strengthening proteins.',protein:'Bio-proteins, argan oil.',tea:'Tea tree oil, gentle cleansers.',bright:'Brightening actives, gentle cleansers.',oil:'Botanical oils, vitamin E.'};
+const ingFor=()=>{const n=p.n.toLowerCase();let t='Professional conditioning complex, vitamin E.';for(const k in ING)if(n.includes(k)){t=ING[k];break}return t+' Full INCI list on the pack.'};
+
+// gallery: own image, hover image, then same-category shots
+const gal=[...new Set([p.i,p.b,...P.filter(x=>x.c===p.c&&x!==p).map(x=>x.i)])].slice(0,5);
+let gi=0,size=p.z[0],q=1;
+$('#bc1').textContent=p.c;$('#bc2').textContent=p.n;$('#tag').textContent=p.t||p.c;
+$('#nm').innerHTML=p.n.split(' ').map(w=>`<span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em">${[...w].map(c=>`<span class="ch">${c}</span>`).join('')}</span>`).join(' ');
+$('#ld2').textContent=p.d;$('#hl').innerHTML=p.k.split(' ').slice(0,4).map(k=>`<span>#${k}</span>`).join('');
+$('#ben').innerHTML=p.p.map(b=>`<li>${b}</li>`).join('');
+const st=[HOW[p.c],...HOW2[p.c]];$('#use').textContent=st.map(s=>s[1]).join(' ');$('#ing').textContent=ingFor();
+$('#steps').innerHTML=st.map((s,k)=>`<div class="stp"><div class="n">0${k+1}</div><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+$('#thumbs').innerHTML=gal.map((n,k)=>`<button class="${k?'':'on'}" data-g="${k}" aria-label="Image ${k+1}"><img src="${I(n)}" alt=""></button>`).join('');
+function show(k){gi=(k+gal.length)%gal.length;const m=$('#main');$$('.thumbs button').forEach((b,j)=>b.classList.toggle('on',j===gi));$('#gc').textContent=(gi+1)+' / '+gal.length;$('#lens').style.backgroundImage=`url(${I(gal[gi])})`;
+ if(G){G.to(m,{clipPath:'inset(0 0 0 100%)',duration:.45,ease:'power3.in',onComplete:()=>{m.src=I(gal[gi]);G.fromTo(m,{clipPath:'inset(0 100% 0 0)',scale:1.12},{clipPath:'inset(0 0% 0 0)',scale:1,duration:.9,ease:'expo.out'})}})}else m.src=I(gal[gi])}
+$('#main').src=I(gal[0]);$('#main').alt=p.n;$('#lens').style.backgroundImage=`url(${I(gal[0])})`;$('#gc').textContent='1 / '+gal.length;
+$('#thumbs').onclick=e=>{const b=e.target.closest('[data-g]');if(b&&+b.dataset.g!==gi)show(+b.dataset.g)};
+$('#stage').onpointermove=e=>{const r=e.currentTarget.getBoundingClientRect();$('#lens').style.backgroundPosition=`${(e.clientX-r.left)/r.width*100}% ${(e.clientY-r.top)/r.height*100}%`};
+let sx=0;$('#stage').ontouchstart=e=>sx=e.touches[0].clientX;$('#stage').ontouchend=e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)show(gi+(d<0?1:-1))};
+$('#sz').innerHTML=p.z.map((z,k)=>`<button class="${k?'':'on'}">${z}</button>`).join('');
+$('#sz').onclick=e=>{if(e.target.tagName!=='BUTTON')return;size=e.target.textContent;$$('#sz button').forEach(b=>b.classList.toggle('on',b===e.target));upNow()};
+const upNow=()=>$('#now').href=wa(`Hi The VALT, I want to buy ${p.n} (${size}) × ${q}`);
+$('#qm').onclick=()=>{q=Math.max(1,q-1);$('#qv').textContent=q;upNow()};$('#qp').onclick=()=>{q++;$('#qv').textContent=q;upNow()};upNow();
+
+// cart (shared with home via localStorage)
+const store=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'null');localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}};
+let cart=store('valt-cart')||[];
+function cartUI(){store('valt-cart',cart);const n=cart.reduce((s,c)=>s+c.q,0);$('#cN').textContent=n;$('#cN').classList.toggle('on',n>0);$('#dT').textContent='Your bag ('+n+')';
+ $('#items').innerHTML=cart.length?cart.map((c,k)=>{const x=P[c.x];return`<div class="li"><img src="${I(x.i)}" alt=""><div><h4>${x.n}</h4><small style="color:var(--mut)">${c.z}</small><br><span class="qty"><button data-d="${k}">−</button><span>${c.q}</span><button data-u="${k}">+</button></span></div><button class="rm" data-r="${k}">Remove</button></div>`}).join(''):'<div class="em">Your bag is empty.</div>';
+ const c=$('#chk');c.href=wa('Hi The VALT, I would like to order:\n'+cart.map(c=>`• ${P[c.x].n} (${c.z}) × ${c.q}`).join('\n'));c.style.opacity=cart.length?1:.4;c.style.pointerEvents=cart.length?'':'none'}
+let tt;function toast(h){const t=$('#tst');t.innerHTML=h;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2400)}
+function add(x,z,n=1){const it=P[x];z=z||it.z[0];const f=cart.find(c=>c.x===x&&c.z===z);f?f.q+=n:cart.push({x,z,q:n});cartUI();toast(`<img src="${I(it.i)}" alt="">${it.n} added to bag`);G&&G.fromTo('#oC',{scale:1.35},{scale:1,duration:.7,ease:'elastic.out(1,.4)'})}
+$('#items').onclick=e=>{const t=e.target.dataset;if(t.u)cart[t.u].q++;if(t.d){cart[t.d].q--;if(!cart[t.d].q)cart.splice(t.d,1)}if(t.r)cart.splice(t.r,1);cartUI()};
+const drw=$('#drw'),scrim=$('#scrim');let lenis;
+const openC=()=>{drw.classList.add('on');scrim.classList.add('on');lenis&&lenis.stop()},closeC=()=>{drw.classList.remove('on');scrim.classList.remove('on');lenis&&lenis.start()};
+$('#oC').onclick=openC;$('#xC').onclick=closeC;scrim.onclick=closeC;addEventListener('keydown',e=>{if(e.key==='Escape')closeC();if(e.key==='ArrowRight')show(gi+1);if(e.key==='ArrowLeft')show(gi-1)});
+$('#add').onclick=()=>add(p.x,size,q);$('#sA').onclick=()=>add(p.x,size,q);
+$('#sI').src=I(p.i);$('#sN').textContent=p.n;$('#waf').href=wa('Hi The VALT, I have a question about '+p.n);
+cartUI();
+
+// big name marquee, reveal, routine, related
+$('#big').innerHTML=Array(6).fill(`<span>${p.n}</span>`).join('');
+$('#rvImg').src=I(p.b);$('#rvT').innerHTML=p.d.split('.')[0]+'.';
+const card=x=>`<div class="pc">${x.t?`<span class="tg">${x.t}</span>`:''}<a class="im" href="product.html?p=${x.s}" style="display:block"><img src="${I(x.i)}" alt="The VALT ${x.n}" loading="lazy"><img class="b" src="${I(x.b)}" alt="" loading="lazy"></a><div class="meta"><div><h4><a href="product.html?p=${x.s}" class="ul">${x.n}</a></h4><small>${x.c}</small></div><span class="sz">${x.z[0]}</span></div></div>`;
+const PAIR={'Shampoo':['Masks','Serums & Oils'],'Masks':['Shampoo','Serums & Oils'],'Treatments':['Shampoo','Serums & Oils'],'Serums & Oils':['Shampoo','Masks'],'Bundles':['Masks','Serums & Oils'],'Skin':['Skin','Skin']};
+const word=p.n.split(' ')[0].toLowerCase();
+const pick=c=>P.find(x=>x!==p&&x.c===c&&x.n.toLowerCase().includes(word))||P.find(x=>x!==p&&x.c===c);
+const R=[p,...new Set(PAIR[p.c].map(pick))].filter(Boolean).slice(0,3);
+$('#rt').innerHTML=R.map((x,k)=>card(x)).join('')+`<div class="sum"><div class="k" style="color:var(--wine)">Your ritual</div><h3>${R.length}-step set</h3><p style="color:#5b5047;margin-bottom:20px">${R.map(x=>x.n).join(' + ')}</p><button class="btn btn-d" id="addAll" style="width:100%">Add all to bag</button></div>`;
+$('#addAll').onclick=()=>R.forEach(x=>add(x.x));
+$('#rel').innerHTML=P.filter(x=>x!==p&&(x.g===p.g)).slice(0,8).map(card).join('');
+
+if(!G){document.documentElement.classList.remove('js')}
+else{gsap.registerPlugin(ScrollTrigger);
+ if(window.Lenis){lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+ gsap.timeline()
+  .from('#stage',{clipPath:'inset(100% 0 0 0 round 22px)',duration:1.4,ease:'expo.inOut'})
+  .from('#main',{scale:1.3,duration:1.8,ease:'expo.out'},'-=.8')
+  .from('.thumbs button',{opacity:0,x:-20,stagger:.06,duration:.6},'-=1.4')
+  .from('#nm .ch',{yPercent:110,duration:1,stagger:.018,ease:'power4.out'},'-=1.5')
+  .from('.info>*:not(h1)',{opacity:0,y:24,stagger:.06,duration:.8,ease:'power3.out'},'-=1');
+ gsap.to('#prog',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});
+ // marquee moves + skews with scroll velocity
+ const mq=gsap.to('#big',{xPercent:-50,repeat:-1,duration:30,ease:'none'});
+ ScrollTrigger.create({onUpdate:s=>{const v=s.getVelocity();gsap.to(mq,{timeScale:(v<0?-1:1)*(1+Math.min(5,Math.abs(v)/500)),duration:.3,overwrite:true});gsap.to('#big',{skewX:Math.max(-12,Math.min(12,v/-300)),duration:.4,overwrite:'auto'})}});
+ // card-to-fullscreen image reveal
+ gsap.timeline({scrollTrigger:{trigger:'#rv',start:'top top',end:'bottom bottom',scrub:true}})
+  .to('.reveal .frame',{clipPath:'inset(0% 0% round 0px)',ease:'none'})
+  .to('.reveal .frame img',{scale:1,ease:'none'},0)
+  .to('.reveal .cap',{opacity:1,y:-20,ease:'none'},.4);
+ $$('.stp').forEach((s,k)=>gsap.from(s,{opacity:0,y:60,duration:1.1,delay:k*.12,ease:'power3.out',scrollTrigger:{trigger:'.steps',start:'top 85%'}}));
+ gsap.from('#rt>*',{opacity:0,y:50,stagger:.1,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#rt',start:'top 85%'}});
+ gsap.from('#rel .pc',{opacity:0,x:80,stagger:.08,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#rel',start:'top 88%'}});
+ gsap.from('.fbig',{yPercent:50,opacity:0,ease:'none',scrollTrigger:{trigger:'footer',start:'top 90%',end:'top 30%',scrub:true}});
+ ScrollTrigger.create({trigger:'#buy',start:'bottom top',onEnter:()=>$('#stk').classList.add('on'),onLeaveBack:()=>$('#stk').classList.remove('on')});
+}
+</script>
+</body>
+</html>
